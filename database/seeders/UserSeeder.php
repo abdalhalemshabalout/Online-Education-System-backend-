@@ -22,18 +22,26 @@ class UserSeeder extends Seeder
                 'password'     => Hash::make('123456'),
                 'is_active'    => true
             ],
-            // Teacher user
+            // Staff user
             [
                 'role_id'      => 2,
                 'user_id'      => 202020,
+                'email'        => 'staff@school.com',
+                'password'     => Hash::make('123456'),
+                'is_active'    => true
+            ],
+            // Teacher user
+            [
+                'role_id'      => 3,
+                'user_id'      => 303030,
                 'email'        => 'teacher@school.com',
                 'password'     => Hash::make('123456'),
                 'is_active'    => true
             ],
             // Student user
             [
-                'role_id'      => 3,
-                'user_id'      => 303030,
+                'role_id'      => 4,
+                'user_id'      => 404040,
                 'email'        => 'student@school.com',
                 'password'     => Hash::make('123456'),
                 'is_active'    => true

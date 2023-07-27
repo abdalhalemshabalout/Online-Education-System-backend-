@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ManagerRequest extends FormRequest
+class StaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,6 +17,7 @@ class ManagerRequest extends FormRequest
         return true;
     }
 
+    
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['errors' => $validator->errors()], 422));
@@ -29,18 +30,18 @@ class ManagerRequest extends FormRequest
      */
     public function rules(): array
     {
-        $managerId = $this->get('id') ?? 0;
+        $staffId = $this->get('id') ?? 0;
         return [
             'name'                  => 'required|sometimes',
             'surname'               => 'required|sometimes',
-            'phone_number'          => 'required|sometimes|unique:App\Models\Manager,phone_number,' . $managerId,
-            'email'                 => 'required|sometimes|email|unique:App\Models\Manager,email,' . $managerId,
+            'phone_number'          => 'required|sometimes|unique:App\Models\Staff,phone_number,' . $managerId,
+            'email'                 => 'required|sometimes|email|unique:App\Models\Staff,email,' . $managerId,
             'password'              => 'required|sometimes|min:6|confirmed',
             'identity_number'       => 'required|sometimes|',
             'gender'                => 'required|sometimes|',
-        ];      
-
+        ]; 
     }
+
     /**
      * Validation's error messages.
      *

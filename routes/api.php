@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\ClassRoomController;
 use App\Http\Controllers\Api\LessonContent\LessonContentController;
 use App\Http\Controllers\Api\Lessons\LessonController;
 use App\Http\Controllers\Api\Lessons\LessonAnnouncementController;
-use App\Http\Controllers\Api\Users\ManagerController;
+use App\Http\Controllers\Api\Users\StaffController;
 use App\Http\Controllers\Api\Users\StudentController;
 use App\Http\Controllers\Api\Users\TeacherController;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/branches', BranchController::class);
     Route::resource('/announcements', AnnouncementController::class);
 
-    Route::resource('/managers', ManagerController::class);
+    Route::resource('/staffs', StaffController::class);
     Route::resource('/teachers', TeacherController::class);
     Route::resource('/stdeunts', StudentController::class);
 

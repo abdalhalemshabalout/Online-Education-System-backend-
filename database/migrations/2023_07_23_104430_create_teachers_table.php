@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->bigIncrements('id')->from(202020)->unique(); 
+            $table->bigIncrements('id')->from(303030)->unique(); 
             $table->foreignId('class_room_id')->constrained('class_rooms')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('branch_id')->constrained('branches')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
