@@ -75,4 +75,5 @@ class StudentController extends Controller
 
         return $this->sendResponse($student,$responseMessage);
     }
+
 }

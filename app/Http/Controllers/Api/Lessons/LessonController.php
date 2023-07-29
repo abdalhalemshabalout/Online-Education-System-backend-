@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Lessons;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Models\Lesson;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LessonController extends ApiController
@@ -66,5 +67,16 @@ class LessonController extends ApiController
         $responseMessage = "lesson has been removed successfully";
 
         return $this->sendResponse($lesson,$responseMessage);
+    }
+
+    /**
+     * Lessons By User Id.
+     */
+    public function LessonsByUserId()
+    {
+        $branchId =$this->branchId();
+        $lessons = Lesson::where('branch_id',[$branchId])->select()->get();
+
+        return $lessons;
     }
 }

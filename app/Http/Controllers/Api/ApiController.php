@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
@@ -45,7 +47,7 @@ class ApiController extends Controller
      * @return \Illuminate\Http\JsonResponse The response object
      */
     public function sendError(
-        string $error = 'İşlem sırasında bir hata oluştu',
+        string $error = 'An error occurred during the operation',
         array  $errorMessages = [],
         object $data = null,
         bool   $isSuccess = false,
@@ -84,7 +86,7 @@ class ApiController extends Controller
         $role = Role::where('name', $RoleName)->first();
 
         if (!$RoleName) {
-            throw new Exception('Role bulunamadi.');
+            throw new Exception('Role not found.');
         }
 
         $data['role_id'] = $role->id;
@@ -125,11 +127,51 @@ class ApiController extends Controller
         $user = User::where('user_id', $model->id);
 
         if (!$user) {
-            throw new Exception('Kullanıcı bulunamadı.');
+            throw new Exception('User not found.');
         }
 
         $user->delete();
 
         return $user;
     }
+   
+    /***
+     *
+     *  check user id from Login
+     */
+    public function getUserId()
+    {
+        $userId = Auth::user()->user_id;
+
+        return $userId;
+    }
+      /**
+     * get user .
+     */
+    public function getUser()
+    {
+        $userId =Auth::user();
+        
+        return $userId;
+    }
+
+     /**
+     * branch_id By user Id.
+     */
+    public function branchId()
+    {
+        $user = $this->getUser();
+
+        switch (Role::findOrFail($user->role_id)?->name) {
+            case 'teacher':
+                    $branchId =Teacher::where('id', $this->getUserId())->pluck('branch_id');
+                return $branchId[0];
+            case 'student':
+                    $branchId =Student::where('id', $this->getUserId())->pluck('branch_id');
+                return $branchId[0];
+            default:
+                throw new Exception('This user cannot make transactions because no branch is registered..');
+        }
+    }
+    
 }

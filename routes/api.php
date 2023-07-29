@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AnnouncementController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\ClassRoomController;
@@ -45,5 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/lesson-contents', LessonContentController::class);
 
+
+    Route::get('/user-lessons',[LessonController::class,'LessonsByUserId']);
+    Route::get('/branch_id',[ApiController::class,'branchId']);
+
+    
 
 });

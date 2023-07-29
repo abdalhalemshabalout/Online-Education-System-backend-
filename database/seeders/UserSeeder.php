@@ -38,11 +38,25 @@ class UserSeeder extends Seeder
                 'password'     => Hash::make('123456'),
                 'is_active'    => true
             ],
+            [
+                'role_id'      => 3,
+                'user_id'      => 303031,
+                'email'        => 'teacher2@school.com',
+                'password'     => Hash::make('123456'),
+                'is_active'    => true
+            ],
             // Student user
             [
                 'role_id'      => 4,
                 'user_id'      => 404040,
                 'email'        => 'student@school.com',
+                'password'     => Hash::make('123456'),
+                'is_active'    => true
+            ],
+            [
+                'role_id'      => 4,
+                'user_id'      => 404041,
+                'email'        => 'studen2@school.com',
                 'password'     => Hash::make('123456'),
                 'is_active'    => true
             ],

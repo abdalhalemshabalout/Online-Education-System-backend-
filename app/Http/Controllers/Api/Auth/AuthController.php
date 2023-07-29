@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +18,11 @@ class AuthController extends ApiController
          $user = User::where('email', $credentials['email'])->first();
  
          if (!$user) {
-             return response('Kullanıcı bulunamadı.', 401);
+             return response('User not found.', 401);
          }
  
          if (!$user?->is_active) {
-             return response('Hesabınız deaktif durumdadır.', 401);
+             return response('Your account is inactive.', 401);
          }
  
          if (Auth::attempt($credentials)) {
@@ -31,12 +30,12 @@ class AuthController extends ApiController
              $data = new stdClass;
              $data->user = Auth::user();
              $data->token = Auth::user()->createToken(str()->random(60))->plainTextToken;
-             $message = "Giriş başarılı";
+             $message = "Login successful";
  
              return $this->sendResponse($data, $message);
          }
  
-         $errorMessage = 'Girdiğiniz bilgileri kontrol ederek tekrar deneyiniz.';
+         $errorMessage = 'Please check the information you entered and try again..';
  
          return $this->sendError($errorMessage);
      }
@@ -45,7 +44,7 @@ class AuthController extends ApiController
      public function logOut(Request $req){
          try{
              $req->user()->tokens()->delete();
-                 return response()->json(['status'=>'true','message'=>"Çıkış Yapıldı",'data'=>[]]);
+                 return response()->json(['status'=>'true','message'=>"Checked Out",'data'=>[]]);
          }catch(\Exception $e){
              return response()->json(['status'=>'false','message'=>$e->getMessage(),'data'=>[]],500);
          }
