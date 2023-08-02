@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Users;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\StaffRequest;
 use App\Models\Staff;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends ApiController
 {
@@ -27,6 +28,10 @@ class StaffController extends ApiController
     {
         $data = $req->all();
 
+        $password = Hash::make($req->password);
+        
+        $data['password'] = $password;
+        
         $staff= Staff::create($data);
 
         $this->createUserTo($staff->toArray(),'staff');

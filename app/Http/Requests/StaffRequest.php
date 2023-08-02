@@ -34,9 +34,10 @@ class StaffRequest extends FormRequest
         return [
             'name'                  => 'required|sometimes',
             'surname'               => 'required|sometimes',
-            'phone_number'          => 'required|sometimes|unique:App\Models\Staff,phone_number,' . $managerId,
-            'email'                 => 'required|sometimes|email|unique:App\Models\Staff,email,' . $managerId,
-            'password'              => 'required|sometimes|min:6|confirmed',
+            'phone_number'          => 'required|sometimes|unique:App\Models\Staff,phone_number,' . $staffId,
+            'email'                 => 'required|sometimes|email|unique:App\Models\Staff,email,' . $staffId,
+            'password'              => 'required|sometimes|min:6',
+            'c_password'            => 'required|same:password',
             'identity_number'       => 'required|sometimes|',
             'gender'                => 'required|sometimes|',
         ]; 
@@ -58,22 +59,24 @@ class StaffRequest extends FormRequest
             'email.unique'               => 'The e-mail address you entered is registered in the system..',
             'password.required'          => 'Şifre field is required.',
             'password.min'               => 'Password field must be at least 6 characters.',
-            'password.confirmed'         => 'Passwords do not match.',
+            'c_password.required'        => 'Please re-enter password.',
+            'c_password.same'            => 'Passwords do not match',
+            // 'password.confirmed'         => 'Passwords do not match.',
             'identity_number.required'   => 'identity_number field is required..',
             'gender.required'            => 'gender field is required..',
         ];
     }
 
-     /**
-     * If request has password, hash it before sending.
-     *
-     * @return void
-     */
-    protected function passedValidation(): void
-    {
-        if ($this->request->has("password")) {
-            $password = $this->request->get("password");
-            $this->request->set("password", Hash::make($password));
-        }
-    }
+    //  /**
+    //  * If request has password, hash it before sending.
+    //  *
+    //  * @return void
+    //  */
+    // protected function passedValidation(): void
+    // {
+    //     if ($this->request->has("password")) {
+    //         $password = $this->request->get("password");
+    //         $this->request->set("password", Hash::make($password));
+    //     }
+    // }
 }
