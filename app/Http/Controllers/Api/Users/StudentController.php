@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\Users;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class StudentController extends Controller
+class StudentController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -27,6 +29,10 @@ class StudentController extends Controller
     public function store(Request $req)
     {
         $data = $req->all();
+
+        $password = Hash::make($req->password);
+        
+        $data['password'] = $password;
 
         $student= Student::create($data);
 

@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/staffs', StaffController::class);
     Route::resource('/teachers', TeacherController::class);
-    Route::resource('/stdeunts', StudentController::class);
+    Route::resource('/students', StudentController::class);
 
     Route::resource('/lessons', LessonController::class);
     Route::resource('/lesson-announcements', LessonAnnouncementController::class);
