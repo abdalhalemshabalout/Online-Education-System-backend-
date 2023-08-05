@@ -18,5 +18,7 @@ class LessonContent extends Model
         'id',
         'lesson_id',
         'title',
+        'text',
+        'document',
     ];
 }

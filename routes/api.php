@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\ClassRoomController;
-use App\Http\Controllers\Api\LessonContent\LessonContentController;
+use App\Http\Controllers\Api\Lessons\LessonContentController;
 use App\Http\Controllers\Api\Lessons\LessonController;
 use App\Http\Controllers\Api\Lessons\LessonAnnouncementController;
 use App\Http\Controllers\Api\Users\StaffController;
@@ -41,15 +41,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/teachers', TeacherController::class);
     Route::resource('/students', StudentController::class);
 
+    Route::get('/branch_students/{id}', [BranchController::class,'branchStudents']);
+
     Route::resource('/lessons', LessonController::class);
     Route::resource('/lesson-announcements', LessonAnnouncementController::class);
 
     Route::resource('/lesson-contents', LessonContentController::class);
+    Route::get('/lesson-content/{id}', [LessonContentController::class,'lessonContents']);
 
 
     Route::get('/user-lessons',[LessonController::class,'LessonsByUserId']);
     Route::get('/branch_id',[ApiController::class,'branchId']);
+    
+    Route::get('/total',[ApiController::class,'total']);
 
     
-
 });

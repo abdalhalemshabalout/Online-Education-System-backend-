@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Branch;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class BranchController extends ApiController
@@ -69,5 +70,15 @@ class BranchController extends ApiController
         $responseMessage = "branch has been removed successfully";
 
         return $this->sendResponse($branch,$responseMessage);
+    }
+
+    /**
+     * branch students.
+     */
+    public function branchStudents($id)
+    {
+        $branch_students = Student::all()->where('branch_id',$id);
+
+        return response()->json($branch_students);
     }
 }

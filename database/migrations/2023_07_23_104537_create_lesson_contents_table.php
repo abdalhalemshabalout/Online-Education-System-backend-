@@ -15,6 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('lesson_id')->constrained('lessons')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
+            $table->text('text');
+            $table->string('document');
             $table->timestamps();
         });
     }

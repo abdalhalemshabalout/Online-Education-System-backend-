@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
+use App\Models\ClassRoom;
 use App\Models\Role;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -173,5 +175,13 @@ class ApiController extends Controller
                 throw new Exception('This user cannot make transactions because no branch is registered..');
         }
     }
-    
-}
+    public function total(){
+        $data = [
+            'class_rooms' => ClassRoom::count(),
+            'branches'=>Branch::count(),
+            'teacers'=>Teacher::count(),
+            'students'=>Student::count()
+        ];
+        return $data;
+    }
+}   
