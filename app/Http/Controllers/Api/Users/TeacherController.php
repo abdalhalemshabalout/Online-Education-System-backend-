@@ -13,7 +13,7 @@ class TeacherController extends ApiController
      */
     public function index()
     {
-        $teachers= Teacher::all();
+        $teachers= Teacher::with(['classRoom','branch'])->get();
 
         $responseMessage = "Teachers List";
 

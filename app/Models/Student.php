@@ -36,4 +36,19 @@ class Student extends Model
     {
         return $this->hasOne(User::class, 'user_id', 'id');
     }
+
+    /**
+     * Get classroom's name.
+    */
+    public function classRoom()
+    {
+        return $this->belongsTo(ClassRoom::class, 'class_room_id', 'id');
+    }
+      /**
+     * Get branch's name.
+    */
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
+    }
 }
