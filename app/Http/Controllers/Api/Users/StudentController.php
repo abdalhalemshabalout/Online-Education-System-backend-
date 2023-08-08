@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Users;
 
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;

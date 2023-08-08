@@ -67,16 +67,5 @@ class StaffRequest extends FormRequest
         ];
     }
 
-    //  /**
-    //  * If request has password, hash it before sending.
-    //  *
-    //  * @return void
-    //  */
-    // protected function passedValidation(): void
-    // {
-    //     if ($this->request->has("password")) {
-    //         $password = $this->request->get("password");
-    //         $this->request->set("password", Hash::make($password));
-    //     }
-    // }
+
 }

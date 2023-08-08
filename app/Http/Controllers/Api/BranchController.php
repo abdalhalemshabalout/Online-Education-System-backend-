@@ -75,9 +75,9 @@ class BranchController extends ApiController
     /**
      * branch students.
      */
-    public function branchStudents($id)
+    public function branchStudents(Request $req)
     {
-        $branch_students = Student::all()->where('branch_id',$id);
+        $branch_students = Student::all()->where('branch_id',$req->input('branchId'));
 
         return response()->json($branch_students);
     }

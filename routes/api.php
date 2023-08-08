@@ -39,9 +39,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/staffs', StaffController::class);
     Route::resource('/teachers', TeacherController::class);
+    Route::get('/get-teachers', [TeacherController::class,'teachers']);
+    
     Route::resource('/students', StudentController::class);
 
-    Route::get('/branch_students/{id}', [BranchController::class,'branchStudents']);
+    Route::post('/branch_students', [BranchController::class,'branchStudents']);
 
     Route::resource('/lessons', LessonController::class);
     Route::resource('/lesson-announcements', LessonAnnouncementController::class);

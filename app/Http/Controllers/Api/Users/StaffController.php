@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Users;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\StaffRequest;
 use App\Models\Staff;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class StaffController extends ApiController
@@ -24,7 +25,7 @@ class StaffController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StaffRequest $req)
+    public function store(Request $req)
     {
         $data = $req->all();
 
@@ -66,7 +67,6 @@ class StaffController extends ApiController
         $responseMessage = "The staff has been modified successfully";
 
         return $this->sendResponse($staff,$responseMessage);
-    
     }
 
     /**
