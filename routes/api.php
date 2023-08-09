@@ -47,7 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/lessons', LessonController::class);
     Route::resource('/lesson-announcements', LessonAnnouncementController::class);
-
+    Route::get('/lesson-announcement/{id}', [LessonAnnouncementController::class,'lessonAnnouncements']);
+    
     Route::resource('/lesson-contents', LessonContentController::class);
     Route::get('/lesson-content/{id}', [LessonContentController::class,'lessonContents']);
 

@@ -13,13 +13,21 @@ class LessonAnnouncementController extends ApiController
      */
     public function index()
     {
-        $announcements = LessonAnnouncement::all();
+        $announcements = LessonAnnouncement::orderBy('created_at', 'desc')->get();
 
         $responseMessage = 'Lesson announcements List';
         
         return $this->sendResponse($announcements , $responseMessage);
     }
+    /**
+     * lesson Announcements.
+    */
+    public function lessonAnnouncements($id)
+    {
+        $lesson_announcements = LessonAnnouncement::all()->where('lesson_id',$id);
 
+        return response()->json($lesson_announcements);
+    }
     /**
      * Store a newly created resource in storage.
      */
