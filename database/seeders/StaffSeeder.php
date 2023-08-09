@@ -15,10 +15,10 @@ class StaffSeeder extends Seeder
     public function run(): void
     {  
         Staff::create([
-            'name'              => 'Staff',
+            'name'              => 'Elias',
             'surname'           => 'Staff',
-            'phone_number'      => '44455566677',
-            'email'             => 'staff@school.com',
+            'phone_number'      => '+49 1575 8021122',
+            'email'             => 'elias@staff.com',
             'password'          =>  Hash::make('123456'),
             'address'           => 'Germany',
             'is_active'         => true

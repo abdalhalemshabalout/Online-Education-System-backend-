@@ -17,6 +17,22 @@ class LessonSeed extends Seeder
             [
                 'class_room_id'         => 1,
                 'branch_id'             => 1,
+                'name'                  => 'Germen Language',
+                'code'                  =>  'GE',
+                'timer'                 =>  120,
+                'detaily'               =>  'new lesson',
+            ],
+            [
+                'class_room_id'         => 1,
+                'branch_id'             => 1,
+                'name'                  => 'Arabic Language',
+                'code'                  =>  'AR',
+                'timer'                 =>  90,
+                'detaily'               =>  'new lesson',
+            ],
+            [
+                'class_room_id'         => 1,
+                'branch_id'             => 1,
                 'name'                  => 'English Language',
                 'code'                  =>  'EN',
                 'timer'                 =>  60,

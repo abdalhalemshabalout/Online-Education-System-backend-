@@ -15,10 +15,10 @@ class ManagerSeeder extends Seeder
     {
         
         Manager::create([
-            'name'              => 'Manager',
+            'name'              => 'Matteo',
             'surname'           => 'Manager',
-            'phone_number'      => '00011122233',
-            'email'             => 'manager@school.com',
+            'phone_number'      => '+49 1575 8021121',
+            'email'             => 'matteo@manager.com',
             'password'          =>  Hash::make('123456'),
             'address'           => 'Germany',
             'is_active'         => true
