@@ -15,11 +15,11 @@ class StaffController extends ApiController
      */
     public function index()
     {
-        $staff= Staff::all();
+        $staff = Staff::all();
 
         $responseMessage = "Staff List";
 
-        return $this->sendResponse($staff,$responseMessage);
+        return $this->sendResponse($staff, $responseMessage);
     }
 
     /**
@@ -30,17 +30,16 @@ class StaffController extends ApiController
         $data = $req->all();
 
         $password = Hash::make($req->password);
-        
-        $data['password'] = $password;
-        
-        $staff= Staff::create($data);
 
-        $this->createUserTo($staff->toArray(),'staff');
+        $data['password'] = $password;
+
+        $staff = Staff::create($data);
+
+        $this->createUserTo($staff->toArray(), 'staff');
 
         $responseMessage = "Staff added successfully";
 
-        return $this->sendResponse($staff,$responseMessage);
-  
+        return $this->sendResponse($staff, $responseMessage);
     }
 
     /**
@@ -66,7 +65,7 @@ class StaffController extends ApiController
 
         $responseMessage = "The staff has been modified successfully";
 
-        return $this->sendResponse($staff,$responseMessage);
+        return $this->sendResponse($staff, $responseMessage);
     }
 
     /**
@@ -79,6 +78,6 @@ class StaffController extends ApiController
 
         $responseMessage = "The staff has been removed successfully";
 
-        return $this->sendResponse($staff,$responseMessage);
+        return $this->sendResponse($staff, $responseMessage);
     }
 }

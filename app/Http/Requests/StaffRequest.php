@@ -17,7 +17,7 @@ class StaffRequest extends FormRequest
         return true;
     }
 
-    
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['errors' => $validator->errors()], 422));
@@ -37,10 +37,10 @@ class StaffRequest extends FormRequest
             'phone_number'          => 'required|sometimes|unique:App\Models\Staff,phone_number,' . $staffId,
             'email'                 => 'required|sometimes|email|unique:App\Models\Staff,email,' . $staffId,
             'password'              => 'required|sometimes|min:6',
-            'c_password'            => 'required|same:password',
+            'c_password'            => 'required|sometimes|same:password',
             'identity_number'       => 'required|sometimes|',
             'gender'                => 'required|sometimes|',
-        ]; 
+        ];
     }
 
     /**
@@ -66,6 +66,4 @@ class StaffRequest extends FormRequest
             'gender.required'            => 'gender field is required..',
         ];
     }
-
-
 }
