@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             BranchSeeder::class,
             LessonSeed::class,
             RoleSeeder::class,
+            AnnouncementSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

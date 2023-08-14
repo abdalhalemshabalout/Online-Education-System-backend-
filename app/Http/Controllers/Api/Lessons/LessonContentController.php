@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\LessonContentRequest;
 use App\Models\LessonContent;
 use Illuminate\Http\Request;
+use \Validator;
 
 class LessonContentController extends ApiController
 {
@@ -27,14 +28,21 @@ class LessonContentController extends ApiController
     {
         $data = $req->all();
 
-        if ($req->hasFile('document')) {
-            $document = $req->file('document');
-            $extension = $document->getClientOriginalExtension();
-            $filename = md5($document->getClientOriginalName()) . '_' . time() . '.' . $extension;
-            $documentPath = $document->storeAs('lesson-contents', $filename, 'public');
-            $data['document'] = $documentPath;
-        }
+        $validator = Validator::make($req->all(), [
+            'document' => 'required|mimes:doc,docx,pdf,txt,csv',
+        ]);
+        if ($validator->fails()) {
 
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+        if (($req->document)!='') {
+            $file =$req->file('document');
+            $extension = $file->getClientOriginalExtension();
+            $document = time().'.' . $extension;
+            $file->move(public_path('lesson-contents/'), $document);
+            $data['document']= 'lesson-contents/'.$document;
+        }
+        
         $lesson= LessonContent::create($data);
 
         $responseMessage = "lesson content added successfully";
